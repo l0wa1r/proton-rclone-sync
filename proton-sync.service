@@ -22,6 +22,7 @@ ExecStart=/usr/bin/rclone copy %h/ proton: \
     --low-level-retries 10 \
     --buffer-size 16M \
     --log-level NOTICE
+    --ignore-errors \
 
 Restart=on-failure
 RestartSec=30
