@@ -8,17 +8,17 @@ Type=oneshot
 
 ExecStart=/usr/bin/rclone copy %h/ proton: \
     --filter-from %h/.config/rclone/proton.filter \
-    --update \
+    --ignore-existing \
+    --size-only \
     --fast-list \
-    --transfers 2 \
-    --checkers 8 \
-    --tpslimit 2 \
-    --drive-pacer-min-sleep 1s \
+    --transfers 1 \
+    --checkers 4 \
+    --tpslimit 1 \
+    --drive-pacer-min-sleep 500ms \
     --protondrive-replace-existing-draft=true \
-    --protondrive-enable-file-delete=true \
-    --retries 5 \
-    --low-level-retries 15 \
-    --buffer-size 64M \
+    --retries 3 \
+    --low-level-retries 10 \
+    --buffer-size 32M \
     --log-level NOTICE
 
 Restart=on-failure
