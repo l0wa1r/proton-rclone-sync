@@ -8,8 +8,7 @@ Type=oneshot
 
 ExecStart=/usr/bin/rclone copy %h/ proton: \
     --filter-from %h/.config/rclone/proton.filter \
-    --ignore-existing \
-    --size-only \
+    --update \
     --fast-list \
     --transfers 2 \
     --checkers 8 \
