@@ -7,7 +7,7 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
 - **Efficient:** Only triggers on file changes — no cron needed.
 - **Minimal:** Lightweight `oneshot` service with no background processes.
 - **Smart:** Reads Proton Drive before uploading — only sends new or modified files.
-- **One-Way:** One-way sync (local → Proton only).
+- **Safe:** One-way sync (local → Proton only).
 
 ## Requirements
 
@@ -53,7 +53,19 @@ To trigger a manual sync:
 systemctl --user start proton-sync.service
 ```
 
-## Filter File
+## Configuration
+
+### Remote Name
+
+The service assumes your Proton Drive remote is named `proton`. To check your remote name:
+
+```bash
+rclone listremotes
+```
+
+If your remote has a different name, edit `~/.config/systemd/user/proton-sync.service` and replace `proton:` with your remote name, then run `systemctl --user daemon-reload`.
+
+### Filter File
 
 Edit `~/.config/rclone/proton.filter` to control which folders are synced:
 
@@ -67,6 +79,8 @@ Edit `~/.config/rclone/proton.filter` to control which folders are synced:
 ```
 
 Rules are processed top to bottom. A `+` includes the path, `-` excludes it. The final `- *` excludes everything not explicitly included.
+
+> **Note:** The path watcher (`proton-sync.path`) monitors the same folders listed here. If you add or remove folders from this filter, update `proton-sync.path` accordingly and run `systemctl --user daemon-reload`.
 
 ## Troubleshooting
 
