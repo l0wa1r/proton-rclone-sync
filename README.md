@@ -7,7 +7,7 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
 - **Efficient:** Only triggers on file changes — no cron needed.
 - **Minimal:** Lightweight `oneshot` service with no background processes.
 - **Smart:** Reads Proton Drive before uploading — only sends new or modified files.
-- **Safe:** One-way sync (local → Proton only).
+- **Safe:** One-way sync (local → Proton only). Files deleted locally stay in Proton. Nothing is ever downloaded from Proton, protecting against ransomware.
 
 ## Requirements
 
@@ -16,20 +16,21 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
 
 ## Installation
 
-0. **:3**
+1. **Clone the repo:**
 
-  ```bash
+   ```bash
    git clone https://github.com/l0wa1r/proton-rclone-sync ~/.local/share/proton-sync
+   cd ~/.local/share/proton-sync
    ```
 
-1. **Copy the unit files:**
+2. **Copy the unit files:**
 
    ```bash
    mkdir -p ~/.config/systemd/user/
    cp proton-sync.service proton-sync.path ~/.config/systemd/user/
    ```
 
-2. **Configure the filter file:**
+3. **Configure the filter file:**
 
    Copy the example filter and edit it to match your folder structure:
 
@@ -38,7 +39,7 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
    cp proton.filter ~/.config/rclone/proton.filter
    ```
 
-3. **Enable and start:**
+4. **Enable and start:**
 
    ```bash
    systemctl --user daemon-reload
@@ -47,7 +48,7 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
 
 ## Usage
 
-The path watcher monitors your home directory and automatically triggers a sync when files change. To monitor logs in real time:
+The path watcher monitors your configured folders and automatically triggers a sync when files change. To monitor logs in real time:
 
 ```bash
 journalctl --user -u proton-sync.service -f
@@ -56,7 +57,8 @@ journalctl --user -u proton-sync.service -f
 To trigger a manual sync:
 
 ```bash
-systemctl --user start proton-sync.service
+systemctl --user start proton-sync.service &
+journalctl --user -u proton-sync.service -f
 ```
 
 ## Configuration
