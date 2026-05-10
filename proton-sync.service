@@ -10,19 +10,21 @@ ExecStart=/usr/bin/rclone copy %h/ proton: \
     --filter-from %h/.config/rclone/proton.filter \
     --ignore-existing \
     --size-only \
-    --fast-list \
     --transfers 1 \
-    --checkers 4 \
+    --checkers 1 \
     --tpslimit 1 \
-    --drive-pacer-min-sleep 500ms \
+    --tpslimit-burst 1 \
+    --drive-pacer-min-sleep 1s \
+    --drive-pacer-burst 1 \
     --protondrive-replace-existing-draft=true \
-    --retries 3 \
+    --retries 5 \
+    --retries-sleep 10s \
     --low-level-retries 10 \
-    --buffer-size 32M \
+    --buffer-size 16M \
     --log-level NOTICE
 
 Restart=on-failure
-RestartSec=10
+RestartSec=30
 StandardOutput=journal
 StandardError=journal
 
