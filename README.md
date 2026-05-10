@@ -14,7 +14,7 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
 - [`rclone`](https://rclone.org/install/) installed and available in `$PATH`
 - A Proton Drive remote configured via `rclone config` (see [rclone Proton Drive docs](https://rclone.org/protondrive/))
 
-## Installation
+## Installation : git clone https://github.com/l0wa1r/proton-rclone-sync ~/.local/share/proton-sync
 
 1. **Copy the unit files:**
 
