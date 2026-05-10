@@ -16,11 +16,11 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
 
 ## Installation
 
-0. **:D**
+0. **:3**
 
-```bash
-git clone https://github.com/l0wa1r/proton-rclone-sync ~/.local/share/proton-sync
-```
+  ```bash
+   git clone https://github.com/l0wa1r/proton-rclone-sync ~/.local/share/proton-sync
+   ```
 
 1. **Copy the unit files:**
 
