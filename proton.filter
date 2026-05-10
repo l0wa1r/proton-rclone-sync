@@ -1,7 +1,0 @@
-# Example Filter Rules
-+ /Documents/**
-+ /Pictures/**
-+ /Videos/**
-- /Downloads/**
-- /.*
-- *
