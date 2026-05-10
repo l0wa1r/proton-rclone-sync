@@ -1,0 +1,24 @@
+[Unit]
+Description=Proton Drive Sync Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rclone copy %h/ proton: \
+    --filter-from %h/.config/rclone/proton.filter \
+    --ignore-existing \
+    --size-only \
+    --fast-list \
+    --transfers 1 \
+    --checkers 4 \
+    --tpslimit 1 \
+    --drive-pacer-min-sleep 500ms \
+    --protondrive-replace-existing-draft=true \
+    --retries 3 \
+    --low-level-retries 10 \
+    --buffer-size 32M \
+    --log-level NOTICE
+
+[Install]
+WantedBy=default.target
