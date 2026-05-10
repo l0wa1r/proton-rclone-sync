@@ -1,9 +1,0 @@
-[Unit]
-Description=Proton Drive Path Watcher
-
-[Path]
-PathChanged=%h/
-TriggerLimitIntervalSec=30
-
-[Install]
-WantedBy=default.target
