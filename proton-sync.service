@@ -20,5 +20,10 @@ ExecStart=/usr/bin/rclone copy %h/ proton: \
     --buffer-size 32M \
     --log-level NOTICE
 
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
 [Install]
 WantedBy=default.target
