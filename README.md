@@ -7,7 +7,7 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
 - **Efficient:** Only triggers on file changes — no cron needed.
 - **Minimal:** Lightweight `oneshot` service with no background processes.
 - **Smart:** Reads Proton Drive before uploading — only sends new or modified files.
-- **Safe:** One-way sync (local → Proton only). Files deleted locally stay in Proton. Nothing is ever downloaded from Proton, protecting against ransomware.
+- **One-Way:** One-way sync (local → Proton only).
 
 ## Requirements
 
