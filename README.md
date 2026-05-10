@@ -5,7 +5,6 @@ Automated, event-driven backup for Proton Drive on Linux using `rclone` and `sys
 ## Features
 
 - **Efficient:** Only triggers on file changes — no cron needed.
-- **Stable:** Optimized for Proton Drive API limits to prevent 422 errors.
 - **Minimal:** Lightweight `oneshot` service with no background processes.
 
 ## Requirements
